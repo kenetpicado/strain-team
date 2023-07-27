@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CourseController;
 use App\Http\Controllers\Dashboard\PromoterController;
 use App\Http\Controllers\Dashboard\ToggleStatusController;
 use App\Http\Controllers\DashboardController;
@@ -28,6 +29,8 @@ Route::middleware(['auth'])
         Route::resource('promoters', PromoterController::class);
 
         Route::put('toggle-status', ToggleStatusController::class)->name('toggle-status');
+
+        Route::resource('courses', CourseController::class);
     });
 
     //return view emails/register

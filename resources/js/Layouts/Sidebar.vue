@@ -33,6 +33,7 @@
 
 <script setup>
 import { Link, router } from '@inertiajs/vue3';
+import { IconBooks } from '@tabler/icons-vue';
 import { IconHome, IconLogout, IconUser, IconUsersGroup, IconRun, IconStack, IconActivity, IconMoneybag, IconCurrencyDollarOff, IconBellZ, IconLayoutList } from '@tabler/icons-vue';
 
 const DEFAULT_ICON = IconUser;
@@ -58,11 +59,11 @@ const items = [
         route: route('dashboard.promoters.index'),
         icon: IconUser
     },
-    // {
-    //     name: 'Planes',
-    //     route: route('dashboard.plans.index'),
-    //     icon: IconRun
-    // },
+    {
+        name: 'Cursos',
+        route: route('dashboard.courses.index'),
+        icon: IconBooks
+    },
     // {
     //     name: 'Expirados',
     //     route: route('dashboard.plans.expired'),
