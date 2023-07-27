@@ -30,40 +30,25 @@
             <template #header>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Modulos</th>
-                <th>Status</th>
                 <th>Accciones</th>
             </template>
             <template #body>
-                <tr v-for="(course, index) in courses" class="hover:bg-gray-50">
+                <tr v-for="(module, index) in course.modules" class="hover:bg-gray-50">
                     <td>
-                        {{ course.id }}
+                        {{ module.id }}
                     </td>
                     <td>
                         <span class="font-bold">
-                            {{ course.name }}
-                        </span>
-                    </td>
-                    <td>
-                        {{ course.modules_count }}
-                    </td>
-                    <td>
-                        <span :class="[course.is_active ? 'badge-blue' : 'badge-red']" tooltip="Cambiar estado"
-                            @click="confirmToggleStatus(course.id)" role="button">
-                            {{ course.is_active ? 'Activo' : 'Inactivo' }}
+                            {{ module.name }}
                         </span>
                     </td>
                     <td>
                         <div class="flex gap-2">
-                            <Link :href="route('dashboard.courses.show', course.id)">
-                                <IconEye />
-                            </Link>
-
                             <IconPencil @click="editcourse(course)" role="button" />
                         </div>
                     </td>
                 </tr>
-                <tr v-if="courses.length == 0">
+                <tr v-if="course.modules.length == 0">
                     <td colspan="5" class="text-center">No data to display</td>
                 </tr>
             </template>
@@ -83,7 +68,7 @@ import { toast, confirmAction } from "@/Use/helpers.js";
 import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
-    courses: {
+    course: {
         type: Object, required: true
     },
 })
@@ -94,6 +79,7 @@ const isNew = ref(true);
 const breads = [
     { name: 'Dashboard', route: 'dashboard.index' },
     { name: 'Cursos', route: 'dashboard.courses.index' },
+    { name: props.course.name, route: 'dashboard.courses.show', params: props.course.id },
 ]
 
 const form = useForm({
@@ -128,27 +114,6 @@ function saveCourse() {
             },
         });
     }
-}
-
-function confirmToggleStatus(id) {
-    const data = {
-        id: id,
-        table: 'courses'
-    }
-
-    confirmAction({
-        title: 'Cambiar estado',
-        message: '¿Estás seguro de cambiar el estado de este curso?',
-        action: () => {
-            router.put(route('dashboard.toggle-status'), data, {
-                preserveScroll: true,
-                preserveState: true,
-                onSuccess: () => {
-                    toast.success('Estado actualizado correctamente!')
-                },
-            });
-        }
-    })
 }
 
 function resetValues() {

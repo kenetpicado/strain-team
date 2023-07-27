@@ -23,6 +23,15 @@ class CourseController extends Controller
         ]);
     }
 
+    public function show($course)
+    {
+        return inertia('Dashboard/Courses/Show', [
+            'course' => Course::query()
+                ->with('modules')
+                ->find($course)
+        ]);
+    }
+
     public function store(CourseRequest $request)
     {
         Course::create($request->validated());

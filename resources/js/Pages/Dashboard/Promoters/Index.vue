@@ -26,7 +26,7 @@
 
         <TableSection>
             <template #topbar>
-                <div>Promotores</div>
+                <div></div>
                 <button type="button" @click="openModal = true" class="btn-primary">
                     Nuevo
                 </button>
