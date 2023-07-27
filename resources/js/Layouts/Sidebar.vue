@@ -33,6 +33,9 @@
 
 <script setup>
 import { Link, router } from '@inertiajs/vue3';
+import { IconUserCog } from '@tabler/icons-vue';
+import { IconUsers } from '@tabler/icons-vue';
+import { IconUserStar } from '@tabler/icons-vue';
 import { IconBooks } from '@tabler/icons-vue';
 import { IconHome, IconLogout, IconUser, IconUsersGroup, IconRun, IconStack, IconActivity, IconMoneybag, IconCurrencyDollarOff, IconBellZ, IconLayoutList } from '@tabler/icons-vue';
 
@@ -57,12 +60,22 @@ const items = [
     {
         name: 'Promotores',
         route: route('dashboard.promoters.index'),
-        icon: IconUser
+        icon: IconUserCog
     },
     {
         name: 'Cursos',
         route: route('dashboard.courses.index'),
         icon: IconBooks
+    },
+    {
+        name: 'Profesores',
+        route: route('dashboard.teachers.index'),
+        icon: IconUserStar
+    },
+    {
+        name: 'Grupos',
+        route: route('dashboard.groups.index'),
+        icon: IconUsersGroup
     },
     // {
     //     name: 'Expirados',

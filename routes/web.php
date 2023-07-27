@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Dashboard\CourseController;
+use App\Http\Controllers\Dashboard\GroupController;
+use App\Http\Controllers\Dashboard\ModuleController;
 use App\Http\Controllers\Dashboard\PromoterController;
+use App\Http\Controllers\Dashboard\TeacherController;
 use App\Http\Controllers\Dashboard\ToggleStatusController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -26,12 +29,20 @@ Route::middleware(['auth'])
         Route::get('', DashboardController::class)
             ->name('index');
 
-        Route::resource('promoters', PromoterController::class);
+        Route::resource('promoters', PromoterController::class)
+            ->only(['index', 'store', 'update']);
 
-        Route::put('toggle-status', ToggleStatusController::class)->name('toggle-status');
+        Route::put('toggle-status', ToggleStatusController::class)
+            ->name('toggle-status');
 
-        Route::resource('courses', CourseController::class);
+        Route::resource('courses', CourseController::class)
+            ->except(['edit', 'create', 'destroy']);
+
+        Route::resource('modules', ModuleController::class)
+            ->only(['store', 'update']);
+
+        Route::resource('teachers', TeacherController::class)
+            ->only(['index', 'store', 'update']);
+
+        Route::resource('groups', GroupController::class);
     });
-
-    //return view emails/register
-Route::view('test', 'emails.register');

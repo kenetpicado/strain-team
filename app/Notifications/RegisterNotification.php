@@ -32,6 +32,7 @@ class RegisterNotification extends Notification
                 'name' => explode(' ', $notifiable->name)[0],
                 'email' => $notifiable->email,
                 'password' => $this->password,
+                'type' => explode("\\", get_class($notifiable))[2]
             ]);
     }
 }

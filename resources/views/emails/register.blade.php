@@ -6,7 +6,8 @@
     </div>
     <span class="text-header">Hola, {{ $name }}!</span>
     <div class="my-22">
-        Has sido registrado exitosamente en {{ config('app.name') }}, y estamos emocionados de darte la bienvenida a nuestra
+        Has sido registrado exitosamente como {{ $type == 'Teacher' ? 'docente' : 'promotor' }} en {{ config('app.name') }},
+        y estamos emocionados de darte la bienvenida a nuestra
         comunidad.
     </div>
 
@@ -17,7 +18,7 @@
         <div class="my-22">
             <ul>
                 <li style="margin-bottom: 1rem">
-                    Correo: <span class="badge-primary">{{ $email  }}</span>
+                    Correo: <span class="badge-primary">{{ $email }}</span>
                 </li>
                 <li>
                     Contraseña: <span class="badge-primary">{{ $password }}</span>

@@ -44,12 +44,12 @@
                     </td>
                     <td>
                         <div class="flex gap-2">
-                            <IconPencil @click="editcourse(course)" role="button" />
+                            <IconPencil @click="editModule(module)" role="button" />
                         </div>
                     </td>
                 </tr>
                 <tr v-if="course.modules.length == 0">
-                    <td colspan="5" class="text-center">No data to display</td>
+                    <td colspan="3" class="text-center">No data to display</td>
                 </tr>
             </template>
         </TableSection>
@@ -57,15 +57,14 @@
 </template>
 
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import { ref } from 'vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import InputForm from '@/Components/Form/InputForm.vue';
-import { router, useForm } from '@inertiajs/vue3';
 import TableSection from '@/Components/TableSection.vue';
-import { IconPencil, IconEye } from '@tabler/icons-vue';
-import { toast, confirmAction } from "@/Use/helpers.js";
-import { Link } from '@inertiajs/vue3';
+import AppLayout from '@/Layouts/AppLayout.vue';
+import { toast } from "@/Use/helpers.js";
+import { useForm } from '@inertiajs/vue3';
+import { IconPencil } from '@tabler/icons-vue';
+import { ref } from 'vue';
 
 const props = defineProps({
     course: {
@@ -85,9 +84,10 @@ const breads = [
 const form = useForm({
     id: null,
     name: '',
+    course_id: props.course.id
 })
 
-function editcourse(course) {
+function editModule(course) {
     form.id = course.id;
     form.name = course.name;
     isNew.value = false;
@@ -96,20 +96,20 @@ function editcourse(course) {
 
 function saveCourse() {
     if (isNew.value) {
-        form.post(route('dashboard.courses.store'), {
+        form.post(route('dashboard.modules.store'), {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
-                toast.success('Curso creado correctamente!')
+                toast.success('Modulo creado correctamente!')
                 resetValues()
             },
         });
     } else {
-        form.put(route('dashboard.courses.update', form.id), {
+        form.put(route('dashboard.modules.update', form.id), {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
-                toast.success('Curso actualizado correctamente!')
+                toast.success('Modulo actualizado correctamente!')
                 resetValues()
             },
         });
