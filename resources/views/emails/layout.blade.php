@@ -51,6 +51,7 @@
         a {
             color: #6C5EF1;
             text-decoration: none;
+            font-weight: bold
         }
     </style>
 </head>
@@ -71,7 +72,7 @@
                                     <!-- body -->
                                     @yield('body')
                                     <p>
-                                        Gracias, <span class="primary-color bold">{{ config('app.name') }}</span>
+                                        Gracias, equipo de <span class="primary-color bold">{{ config('app.name') }}</span>
                                     </p>
                                 </td>
                             </tr>

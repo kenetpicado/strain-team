@@ -26,8 +26,8 @@ class ForgotPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->from('noreply@strainteam.com', config('app.name'))
-            ->subject(config('app.name') . ' - Restablecer contraseña')
+            ->from(config('mail.from.noreply'), config('app.name'))
+            ->subject('Restablecer contraseña - ' . config('app.name'))
             ->view('emails.forgot-password', [
                 'name' => explode(' ', $notifiable->name)[0],
                 'password' => $this->password,

@@ -17,7 +17,8 @@ class Promoter extends Authenticatable
         'name',
         'email',
         'password',
-        'fee'
+        'fee',
+        'is_active'
     ];
 
     protected $hidden = [

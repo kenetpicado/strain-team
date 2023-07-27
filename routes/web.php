@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\PromoterController;
+use App\Http\Controllers\Dashboard\ToggleStatusController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +18,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/dashboard');
 
-Route::middleware([])
+Route::middleware(['auth'])
     ->prefix('dashboard')
     ->name('dashboard.')
     ->group(function () {
         Route::get('', DashboardController::class)
             ->name('index');
+
+        Route::resource('promoters', PromoterController::class);
+
+        Route::put('toggle-status', ToggleStatusController::class)->name('toggle-status');
     });
+
+    //return view emails/register
+Route::view('test', 'emails.register');

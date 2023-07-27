@@ -6,6 +6,8 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -16,9 +18,10 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .component('Loading', Loading)
             .mount(el);
     },
     progress: {
-        color: '#4B5563',
+        color: '#6C5EF1',
     },
 });

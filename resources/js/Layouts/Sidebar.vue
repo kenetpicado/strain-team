@@ -3,7 +3,7 @@
         <div class="h-full px-3 py-4 overflow-y-auto">
             <div class="flex flex-col items-center mt-4 mb-6">
                 <div class="h-14 w-14">
-                    <img class="h-full w-full" src="/img/logo-ag.png" alt="" />
+                    <img class="h-full w-full" src="/images/login.png" alt="" />
                 </div>
             </div>
             <ul class="space-y-2">
@@ -50,14 +50,14 @@ const items = [
         route: route('dashboard.index'),
         icon: IconHome
     },
-    // {
-    //     header: 'Administración'
-    // },
-    // {
-    //     name: 'Clientes',
-    //     route: route('dashboard.customers.index'),
-    //     icon: IconUser
-    // },
+    {
+        header: 'Administración'
+    },
+    {
+        name: 'Promotores',
+        route: route('dashboard.promoters.index'),
+        icon: IconUser
+    },
     // {
     //     name: 'Planes',
     //     route: route('dashboard.plans.index'),

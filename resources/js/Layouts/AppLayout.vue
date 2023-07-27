@@ -2,6 +2,8 @@
 import { Head, Link } from '@inertiajs/vue3';
 import Sidebar from './Sidebar.vue';
 import { IconChevronRight } from '@tabler/icons-vue';
+// import Loading from 'vue-loading-overlay';
+// import 'vue-loading-overlay/dist/css/index.css';
 
 defineProps({
     title: String,

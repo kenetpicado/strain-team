@@ -14,7 +14,8 @@ class StudentController extends Controller
         return response()->json([
             'data' => Student::query()
                 ->where('promoter_id', auth()->id())
-                ->get(['id', 'name', 'birth', 'id_number', 'card_number', 'phone', 'tutor', 'degree']),
+                ->select(['id', 'name', 'birth', 'id_number', 'card_number', 'phone', 'tutor', 'degree'])
+                ->paginate(),
         ]);
     }
 

@@ -4,17 +4,22 @@ namespace App\Http\Services;
 
 use Illuminate\Support\Facades\Hash;
 
-class ForgotPasswordService
+class PasswordService
 {
-    public function __invoke($user)
+    public function update($user)
     {
-        $clear_password = substr(md5(uniqid(rand(), true)), 0, 10);
+        $clear_password = $this->generate();
 
         $user->update([
             'password' => Hash::make($clear_password),
         ]);
 
         return $clear_password;
+    }
+
+    public function generate()
+    {
+        return substr(md5(uniqid(rand(), true)), 0, 10);
     }
 
 }
