@@ -24,7 +24,19 @@ class GroupRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'course_id' => 'required|numeric',
+            'teacher_id' => 'required|numeric',
+            'branch' => 'required',
+            'info' => 'required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'teacher_id' => "profesor",
+            'course_id' => "curso",
+            "branch" => "sucursal",
         ];
     }
 }

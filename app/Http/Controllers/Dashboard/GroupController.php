@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Enum\BranchEnum;
+use App\Enums\BranchEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\GroupRequest;
 use App\Models\Course;

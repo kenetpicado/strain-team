@@ -25,7 +25,7 @@ return new class extends Migration
                 ->constrained()
                 ->nullOnDelete();
 
-            $table->string('name');
+            $table->string('info');
             $table->string('branch');
             $table->boolean('is_active')->default(true);
             $table->timestamps();

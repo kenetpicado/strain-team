@@ -29,15 +29,21 @@
                         <UserInformation :user="{ name: group.teacher }" />
                     </th>
                     <td>
-                        {{ group.name }}
+                        {{ group.info }}
                     </td>
                     <td>
                         {{ group.branch }}
                     </td>
                     <td>
-                        <Link :href="route('dashboard.groups.edit', group.id)">
-                            <IconPencil />
-                        </Link>
+                        <div class="flex gap-4">
+                            <Link :href="route('dashboard.groups.show', group.id)">
+                                <IconEye />
+                            </Link>
+
+                            <Link :href="route('dashboard.groups.edit', group.id)">
+                                <IconPencil />
+                            </Link>
+                        </div>
                     </td>
                 </tr>
                 <tr v-if="groups.length == 0">
@@ -53,6 +59,7 @@ import TableSection from '@/Components/TableSection.vue';
 import UserInformation from '@/Components/UserInformation.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link } from '@inertiajs/vue3';
+import { IconEye } from '@tabler/icons-vue';
 import { IconPencil } from '@tabler/icons-vue';
 
 const props = defineProps({
