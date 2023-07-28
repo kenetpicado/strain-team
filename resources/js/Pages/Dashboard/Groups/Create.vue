@@ -7,7 +7,7 @@
                 </template>
 
                 <template #description>
-                    Ingrese la informacion del grupo
+                    La sucursal del grupo sera la misma del profesor seleccionado.
                 </template>
 
                 <template #form>
