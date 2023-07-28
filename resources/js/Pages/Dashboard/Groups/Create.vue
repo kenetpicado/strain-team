@@ -19,10 +19,6 @@
                         <option value="">Seleccionar profesor</option>
                         <option v-for="teacher in teachers" :value="teacher.id">{{ teacher.name }}</option>
                     </SelectForm>
-                    <SelectForm v-model="form.branch" text="Sucursal" name="branch">
-                        <option value="">Seleccionar sucursal</option>
-                        <option v-for="branch in branches" :value="branch">{{ branch }}</option>
-                    </SelectForm>
                     <InputForm text="Info" v-model="form.info"></InputForm>
                 </template>
 
@@ -47,11 +43,9 @@ import FormSection from '@/Components/FormSection.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { toast } from '@/Use/helpers.js';
 import { Link, router, useForm } from '@inertiajs/vue3';
+import { watch } from 'vue'
 
 const props = defineProps({
-    branches: {
-        type: Object, required: true
-    },
     teachers: {
         type: Object, required: true
     },
@@ -68,8 +62,15 @@ const form = useForm({
     course_id: 1,
     teacher_id: null,
     info: '',
-    branch: 'LEON'
+    branch_id: null
 });
+
+watch(() => form.teacher_id, (value) => {
+    if (!value) return;
+
+    const teacher = props.teachers.find(teacher => teacher.id == value);
+    form.branch_id = teacher.branch_id;
+})
 
 const breads = [
     { name: 'Dashboard', route: 'dashboard.index' },

@@ -25,8 +25,12 @@ return new class extends Migration
                 ->constrained()
                 ->nullOnDelete();
 
+            $table->foreignId('branch_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
+
             $table->string('info');
-            $table->string('branch');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

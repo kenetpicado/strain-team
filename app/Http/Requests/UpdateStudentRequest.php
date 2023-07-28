@@ -30,6 +30,7 @@ class UpdateStudentRequest extends FormRequest
             'phone' => 'nullable|numeric',
             'tutor' => 'nullable|max:255',
             'degree' => 'nullable|max:255',
+            'branch_id' => 'required|numeric'
         ];
     }
 }

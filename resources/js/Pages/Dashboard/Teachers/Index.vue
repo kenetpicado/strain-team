@@ -11,6 +11,10 @@
                 <div class="grid gap-6">
                     <InputForm text="Nombre" name="name" v-model="form.name" required />
                     <InputForm text="Correo" name="email" v-model="form.email" type="email" required />
+                    <SelectForm v-if="isNaN(branches)" v-model="form.branch_id" text="Sucursal" name="branch_id">
+                        <option value="">Seleccionar sucursal</option>
+                        <option v-for="branch in branches" :value="branch.id">{{ branch.name }}</option>
+                    </SelectForm>
                 </div>
             </template>
             <template #footer>
@@ -35,6 +39,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
+                <th>Suc.</th>
                 <th>Status</th>
                 <th>Accciones</th>
             </template>
@@ -48,6 +53,9 @@
                     </th>
                     <td>
                         {{ teacher.email }}
+                    </td>
+                    <td>
+                        {{ teacher.branch }}
                     </td>
                     <td>
                         <span :class="[teacher.is_active ? 'badge-blue' : 'badge-red']" tooltip="Cambiar estado"
@@ -77,11 +85,15 @@ import UserInformation from '@/Components/UserInformation.vue';
 import TableSection from '@/Components/TableSection.vue';
 import { IconPencil } from '@tabler/icons-vue';
 import { toast, confirmAction } from "@/Use/helpers.js";
+import SelectForm from "@/Components/Form/SelectForm.vue";
 
 const props = defineProps({
     teachers: {
         type: Object, required: true
     },
+    branches: {
+        type: [Object, Number], required: true
+    }
 })
 
 const openModal = ref(false)
@@ -96,6 +108,7 @@ const form = useForm({
     id: null,
     name: '',
     email: '',
+    branch_id: !isNaN(props.branches) ? props.branches : null
 })
 
 function editTeacher(teacher) {

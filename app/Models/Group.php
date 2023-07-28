@@ -13,6 +13,11 @@ class Group extends Model
         'info',
         'course_id',
         'teacher_id',
-        'branch'
+        'branch_id'
     ];
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 }

@@ -25,7 +25,7 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('promoter')->login($user);
 
         return response()->json([
-            'user' => $user,
+            'message' => 'Login successful',
             'auth_token' => $user->createToken('authToken')->plainTextToken,
         ]);
     }

@@ -32,7 +32,7 @@
                         {{ group.info }}
                     </td>
                     <td>
-                        {{ group.branch }}
+                        {{ group.branch.name }}
                     </td>
                     <td>
                         <div class="flex gap-4">

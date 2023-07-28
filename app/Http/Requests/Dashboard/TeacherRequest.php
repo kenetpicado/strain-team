@@ -26,6 +26,7 @@ class TeacherRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|unique:teachers,email,' . $this->id,
+            "branch_id" => 'required|numeric'
         ];
     }
 }

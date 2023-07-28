@@ -2,34 +2,37 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Enums\BranchEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\GroupRequest;
 use App\Models\Course;
 use App\Models\Group;
 use App\Models\Teacher;
+use App\Services\GroupService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
+    public function __construct(
+        private readonly GroupService $groupService
+    ) {
+    }
+
     public function index()
     {
         return inertia('Dashboard/Groups/Index', [
-            'groups' => Group::query()
-                ->addSelect([
-                    "course" => Course::select('name')->whereColumn('course_id', 'courses.id')->limit(1),
-                    "teacher" => Teacher::select('name')->whereColumn('teacher_id', 'teachers.id')->limit(1)
-                ])
-                ->get()
+            'groups' => $this->groupService->getGroupsIndex()
         ]);
     }
 
     public function create()
     {
+        $teachers = auth()->user()->branch_id
+            ? Teacher::where('branch_id', auth()->user()->branch_id)->get(['id', 'name', 'branch_id'])
+            : Teacher::all(['id', 'name', 'branch_id']);
+
         return inertia('Dashboard/Groups/Create', [
-            'branches' => BranchEnum::cases(),
-            'teachers' => DB::table('teachers')->get(['id', 'name']),
+            'teachers' => $teachers,
             'courses' => DB::table('courses')->get(['id', 'name'])
         ]);
     }

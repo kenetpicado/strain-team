@@ -17,11 +17,17 @@ class Teacher extends Authenticatable
         'name',
         'email',
         'password',
-        'is_active'
+        'is_active',
+        'branch_id'
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 }

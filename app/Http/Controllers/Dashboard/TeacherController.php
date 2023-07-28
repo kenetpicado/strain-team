@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\TeacherRequest;
-use App\Http\Services\PasswordService;
+use App\Services\PasswordService;
+use App\Models\Branch;
 use App\Models\Teacher;
 use App\Notifications\RegisterNotification;
 use Illuminate\Http\Request;
@@ -14,8 +15,17 @@ class TeacherController extends Controller
 {
     public function index()
     {
+        $branches = auth()->user()->branch_id ?? Branch::all(['id', 'name']);
+
         return inertia('Dashboard/Teachers/Index', [
-            'teachers' => Teacher::all()
+            'teachers' => Teacher::query()
+                ->addSelect([
+                    'branch' => Branch::select('name')
+                        ->whereColumn('branch_id', 'branches.id')
+                        ->limit(1)
+                ])
+                ->get(),
+            'branches' => $branches
         ]);
     }
 

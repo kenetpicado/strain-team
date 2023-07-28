@@ -6,29 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CourseRequest;
 use App\Models\Course;
 use App\Models\Module;
+use App\Services\CourseService;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
+    public function __construct(
+        private readonly CourseService $courseService
+    ) {
+    }
+
     public function index()
     {
         return inertia('Dashboard/Courses/Index', [
-            'courses' => Course::query()
-                ->addSelect([
-                    'modules_count' => Module::query()
-                        ->selectRaw('count(*)')
-                        ->whereColumn('course_id', 'courses.id')
-                ])
-                ->get()
+            'courses' => $this->courseService->getWithModulesCount()
         ]);
     }
 
     public function show($course)
     {
         return inertia('Dashboard/Courses/Show', [
-            'course' => Course::query()
-                ->with('modules')
-                ->find($course)
+            'course' => $this->courseService->findWithModules($course)
         ]);
     }
 

@@ -26,7 +26,7 @@ class GroupRequest extends FormRequest
         return [
             'course_id' => 'required|numeric',
             'teacher_id' => 'required|numeric',
-            'branch' => 'required',
+            'branch_id' => 'required|numeric',
             'info' => 'required',
         ];
     }
@@ -36,7 +36,6 @@ class GroupRequest extends FormRequest
         return [
             'teacher_id' => "profesor",
             'course_id' => "curso",
-            "branch" => "sucursal",
         ];
     }
 }

@@ -26,8 +26,7 @@ class RegisterPromoterController extends Controller
         $promoter->notify(new RegisterNotification());
 
         return response()->json([
-            'message' => 'Promoter created successfully',
-            'user' => $promoter,
+            'message' => 'Account created successfully',
             'auth_token' => $promoter->createToken('authToken')->plainTextToken,
         ]);
     }

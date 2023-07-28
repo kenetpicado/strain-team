@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\PromoterRequest;
-use App\Http\Services\PasswordService;
+use App\Services\PasswordService;
 use App\Models\Promoter;
 use App\Notifications\RegisterNotification;
 use Illuminate\Http\Request;

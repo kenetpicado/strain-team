@@ -19,5 +19,6 @@ class Student extends Model
         'tutor',
         'degree',
         'promoter_id',
+        "branch_id"
     ];
 }

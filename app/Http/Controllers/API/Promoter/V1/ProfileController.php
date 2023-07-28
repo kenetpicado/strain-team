@@ -15,9 +15,9 @@ class ProfileController extends Controller
 
         return response()->json([
             'data' => [
+                'user' => auth()->user(),
                 'total_students' => $students->count(),
                 'confirmed_students' => $confirmed_students,
-                'incomes' => (auth()->user()->fee ?? 0) * $confirmed_students,
             ],
         ]);
     }

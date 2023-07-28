@@ -26,7 +26,6 @@ class PromoterProfileRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:promoters,email,' . auth()->id(),
-            'fee' => 'required|numeric',
         ];
     }
 }

@@ -26,10 +26,11 @@ class StudentRequest extends FormRequest
         return [
             '*.name' => 'required|max:255',
             '*.birth' => 'required|date',
-            '*.id_number' => 'nullable',
+            '*.id_number' => 'nullable|alpha_dash|unique:students,id_number',
             '*.phone' => 'nullable|numeric',
             '*.tutor' => 'nullable|max:255',
             '*.degree' => 'nullable|max:255',
+            '*.branch_id' => 'required|numeric'
         ];
     }
 }

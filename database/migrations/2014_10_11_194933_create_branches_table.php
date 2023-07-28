@@ -13,19 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('password');
-            $table->boolean('is_active')->default(false);
-            $table->rememberToken();
-
-            $table->foreignId('branch_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
-
             $table->timestamps();
         });
     }
@@ -37,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('branches');
     }
 };
