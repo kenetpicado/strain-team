@@ -35,6 +35,15 @@ class GroupController extends Controller
         ]);
     }
 
+    public function edit(Group $group)
+    {
+        return inertia('Dashboard/Groups/Create', [
+            'teachers' => $this->teacherService->getToCreateGroup(),
+            'courses' => DB::table('courses')->get(['id', 'name']),
+            'group' => $group
+        ]);
+    }
+
     public function store(GroupRequest $request)
     {
         Group::create($request->validated());

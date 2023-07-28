@@ -52,17 +52,17 @@ const props = defineProps({
     courses: {
         type: Object, required: true
     },
-    isNew: {
-        type: Boolean, default: true
-    }
+    group: {
+        type: Object, required: true
+    },
 })
 
 const form = useForm({
-    id: null,
-    course_id: 1,
-    teacher_id: null,
-    info: '',
-    branch_id: null
+    id: props.group?.id ?? null,
+    course_id: props.group?.course_id ?? 1,
+    teacher_id: props.group?.teacher_id ?? null,
+    info: props.group?.info ?? '',
+    branch_id: props.group?.branch_id ?? null,
 });
 
 watch(() => form.teacher_id, (value) => {
@@ -75,11 +75,11 @@ watch(() => form.teacher_id, (value) => {
 const breads = [
     { name: 'Dashboard', route: 'dashboard.index' },
     { name: 'Grupos', route: 'dashboard.groups.index' },
-    { name: props.isNew ? 'Crear' : 'Editar', route: 'dashboard.groups.create' },
+    { name: !props.group ? 'Crear' : 'Editar', route: 'dashboard.groups.create' },
 ]
 
 function saveGroup() {
-    if (props.isNew) {
+    if (!props.group) {
         form.post(route('dashboard.groups.store'), {
             preserveScroll: true,
             preserveState: true,
