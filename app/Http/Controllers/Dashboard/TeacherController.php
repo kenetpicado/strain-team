@@ -9,13 +9,15 @@ use App\Models\Teacher;
 use App\Notifications\RegisterNotification;
 use App\Services\GeneralService;
 use App\Services\PasswordService;
+use App\Services\TeacherService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
     public function __construct(
-        private readonly GeneralService $generalService
+        private readonly GeneralService $generalService,
+        private readonly TeacherService $teacherService
     ) {
     }
 
@@ -24,13 +26,7 @@ class TeacherController extends Controller
         $branches = auth()->user()->branch_id ?? Branch::all(['id', 'name']);
 
         return inertia('Dashboard/Teachers/Index', [
-            'teachers' => Teacher::query()
-                ->addSelect([
-                    'branch' => Branch::select('name')
-                        ->whereColumn('branch_id', 'branches.id')
-                        ->limit(1)
-                ])
-                ->get(),
+            'teachers' => $this->teacherService->getIndex(),
             'branches' => $branches
         ]);
     }

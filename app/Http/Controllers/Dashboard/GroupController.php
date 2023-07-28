@@ -30,7 +30,7 @@ class GroupController extends Controller
     public function create()
     {
         return inertia('Dashboard/Groups/Create', [
-            'teachers' => $this->teacherService->getTeachers(),
+            'teachers' => $this->teacherService->getToCreateGroup(),
             'courses' => DB::table('courses')->get(['id', 'name'])
         ]);
     }
