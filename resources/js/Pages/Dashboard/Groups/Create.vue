@@ -11,8 +11,7 @@
                 </template>
 
                 <template #form>
-                    <SelectForm v-model="form.course_id" text="Curso" name="course_id" disabled>
-                        <option value="">Seleccionar curso</option>
+                    <SelectForm v-model="form.course_id" text="Curso" name="course_id">
                         <option v-for="course in courses" :value="course.id">{{ course.name }}</option>
                     </SelectForm>
                     <SelectForm v-model="form.teacher_id" text="Profesor" name="teacher_id">
