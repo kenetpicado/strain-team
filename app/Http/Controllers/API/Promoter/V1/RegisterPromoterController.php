@@ -17,7 +17,7 @@ class RegisterPromoterController extends Controller
         $promoter = Promoter::create([
             'name' => $request->name,
             'email' => $request->email,
-            'fee' => $request->fee ?? 0,
+            'fee' => 0,
             'password' => Hash::make($request->password),
         ]);
 

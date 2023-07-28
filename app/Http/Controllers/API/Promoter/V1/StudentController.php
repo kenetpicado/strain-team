@@ -6,14 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return response()->json([
             'data' => Student::query()
                 ->where('promoter_id', auth()->id())
+                ->branch($request->branch)
                 ->select(['id', 'name', 'birth', 'id_number', 'card_number', 'phone', 'tutor', 'degree', 'branch_id'])
                 ->paginate(),
         ]);

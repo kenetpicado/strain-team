@@ -21,4 +21,13 @@ class Student extends Model
         'promoter_id',
         "branch_id"
     ];
+
+    public function scopeBranch($query, $branch)
+    {
+        if ($branch) {
+            $query->where('branch_id', $branch);
+        } else {
+            $query->where('branch_id', 1);
+        }
+    }
 }
