@@ -4,14 +4,20 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\PromoterRequest;
-use App\Services\PasswordService;
 use App\Models\Promoter;
 use App\Notifications\RegisterNotification;
+use App\Services\GeneralService;
+use App\Services\PasswordService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class PromoterController extends Controller
 {
+    public function __construct(
+        private readonly GeneralService $generalService
+    ) {
+    }
+
     public function index()
     {
         return inertia('Dashboard/Promoters/Index', [
@@ -21,14 +27,7 @@ class PromoterController extends Controller
 
     public function store(PromoterRequest $request)
     {
-        $password = (new PasswordService)->generate();
-
-        $promoter = Promoter::create($request->validated() + [
-            'password' => Hash::make($password),
-            'is_active' => true,
-        ]);
-
-        $promoter->notify(new RegisterNotification($password));
+        $this->generalService->storeModel(new Promoter(), $request->validated());
 
         return back();
     }

@@ -8,13 +8,15 @@ use App\Models\Course;
 use App\Models\Group;
 use App\Models\Teacher;
 use App\Services\GroupService;
+use App\Services\TeacherService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
     public function __construct(
-        private readonly GroupService $groupService
+        private readonly GroupService $groupService,
+        private readonly TeacherService $teacherService
     ) {
     }
 
@@ -27,12 +29,8 @@ class GroupController extends Controller
 
     public function create()
     {
-        $teachers = auth()->user()->branch_id
-            ? Teacher::where('branch_id', auth()->user()->branch_id)->get(['id', 'name', 'branch_id'])
-            : Teacher::all(['id', 'name', 'branch_id']);
-
         return inertia('Dashboard/Groups/Create', [
-            'teachers' => $teachers,
+            'teachers' => $this->teacherService->getTeachers(),
             'courses' => DB::table('courses')->get(['id', 'name'])
         ]);
     }
