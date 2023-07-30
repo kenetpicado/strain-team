@@ -30,7 +30,7 @@ class StudentController extends Controller
         }
 
         return response()->json([
-            'message' => 'Student created successfully',
+            'message' => trans('crud.created'),
         ]);
     }
 
@@ -39,7 +39,7 @@ class StudentController extends Controller
         $student->update($request->validated());
 
         return response()->json([
-            'message' => 'Student updated successfully',
+            'message' => trans('crud.updated'),
         ]);
     }
 }

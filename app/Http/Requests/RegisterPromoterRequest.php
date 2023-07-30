@@ -27,7 +27,6 @@ class RegisterPromoterRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|max:255|unique:promoters',
             'password' => 'required|confirmed|min:8',
-            'fee' => 'nullable|numeric',
         ];
     }
 }

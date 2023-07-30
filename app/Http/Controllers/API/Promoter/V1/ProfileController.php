@@ -27,7 +27,7 @@ class ProfileController extends Controller
         auth()->user()->update($request->validated());
 
         return response()->json([
-            'message' => 'Profile updated successfully',
+            'message' => trans('crud.updated'),
         ]);
     }
 }
