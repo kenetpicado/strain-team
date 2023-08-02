@@ -32,17 +32,13 @@
 </template>
 
 <script setup>
-import { Link, router } from '@inertiajs/vue3';
-import { IconUserCog } from '@tabler/icons-vue';
-import { IconUsers } from '@tabler/icons-vue';
-import { IconUserStar } from '@tabler/icons-vue';
-import { IconBooks } from '@tabler/icons-vue';
-import { IconHome, IconLogout, IconUser, IconUsersGroup, IconRun, IconStack, IconActivity, IconMoneybag, IconCurrencyDollarOff, IconBellZ, IconLayoutList } from '@tabler/icons-vue';
+import { Link } from '@inertiajs/vue3';
+import { IconBooks, IconHome, IconLogout, IconSchool, IconUser, IconUserCog, IconUserStar, IconUsersGroup } from '@tabler/icons-vue';
 
 const DEFAULT_ICON = IconUser;
 
 const logout = () => {
-    // router.post(route('logout'));
+    router.post(route('logout'));
 };
 
 const items = [
@@ -77,59 +73,11 @@ const items = [
         route: route('dashboard.groups.index'),
         icon: IconUsersGroup
     },
-    // {
-    //     name: 'Expirados',
-    //     route: route('dashboard.plans.expired'),
-    //     icon: IconBellZ
-    // },
-    // {
-    //     name: 'Personal',
-    //     route: route('dashboard.employees.index'),
-    //     icon: IconUsersGroup
-    // },
-    // {
-    //     header: 'Sistema'
-    // },
-    // {
-    //     name: 'Usuarios',
-    //     route: route('dashboard.users.index'),
-    //     icon: IconUsersGroup
-    // },
-    // {
-    //     name: 'Servicios',
-    //     route: route('dashboard.services.index'),
-    //     icon: IconActivity
-    // },
-    // {
-    //     header: 'Finanzas'
-    // },
-    // {
-    //     name: 'Conceptos',
-    //     route: route('dashboard.concepts.index'),
-    //     icon: IconStack
-    // },
-    // {
-    //     name: 'Ingresos',
-    //     route: route('dashboard.finances.index', 'incomes'),
-    //     icon: IconMoneybag
-    // },
-    // {
-    //     name: 'Egresos',
-    //     route: route('dashboard.finances.index', 'expenditures'),
-    //     icon: IconCurrencyDollarOff
-    // },
-    // {
-    //     name: 'Resumen',
-    //     route: route('dashboard.summary.index'),
-    //     icon: IconLayoutList
-    // },
-    // {
-    //     header: 'Cuenta'
-    // },
-    // {
-    //     name: 'Perfil',
-    //     route: route('dashboard.profile.index')
-    // },
+    {
+        name: 'Estudiantes',
+        route: route('dashboard.students.index'),
+        icon: IconSchool
+    },
 ]
 
 function getClass(fullRoute) {

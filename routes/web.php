@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\CourseController;
 use App\Http\Controllers\Dashboard\GroupController;
 use App\Http\Controllers\Dashboard\ModuleController;
 use App\Http\Controllers\Dashboard\PromoterController;
+use App\Http\Controllers\Dashboard\StudentController;
 use App\Http\Controllers\Dashboard\TeacherController;
 use App\Http\Controllers\Dashboard\ToggleStatusController;
 use App\Http\Controllers\DashboardController;
@@ -45,4 +46,6 @@ Route::middleware(['auth'])
             ->only(['index', 'store', 'update']);
 
         Route::resource('groups', GroupController::class);
+
+        Route::resource('students', StudentController::class);
     });

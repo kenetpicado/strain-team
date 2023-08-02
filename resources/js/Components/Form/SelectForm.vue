@@ -5,7 +5,7 @@
         </label>
 
         <select
-            :disabled="disabled"
+            :disabled="disabled" :required="required"
             class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
             :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">
             <slot></slot>
@@ -31,6 +31,9 @@ const props = defineProps({
         type: String, required: false
     },
     disabled: {
+        type: Boolean, default: false
+    },
+    required: {
         type: Boolean, default: false
     }
 })

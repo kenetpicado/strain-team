@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateStudentRequest extends FormRequest
+class StudentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class UpdateStudentRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'birth' => 'required|date',
-            'id_number' => 'nullable|unique:students,id_number,' . $this->id,
+            'id_number' => 'nullable|alpha_dash|unique:students,id_number,' . $this->id,
             'phone' => 'nullable|numeric',
             'tutor' => 'nullable|max:255',
             'degree' => 'nullable|max:255',
