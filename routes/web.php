@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/dashboard');
 
-Route::middleware(['auth'])
+Route::middleware(['auth:sanctum'])
     ->prefix('dashboard')
     ->name('dashboard.')
     ->group(function () {

@@ -31,6 +31,9 @@
                     <td colspan="3" class="text-center">No data to display</td>
                 </tr>
             </template>
+            <template #paginator>
+                <ThePaginator :links="students.links"/>
+            </template>
         </TableSection>
     </AppLayout>
 </template>
@@ -41,6 +44,7 @@ import UserInformation from '@/Components/UserInformation.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link } from '@inertiajs/vue3';
 import { IconPencil } from '@tabler/icons-vue';
+import ThePaginator from "@/Components/ThePaginator.vue"
 
 const props = defineProps({
     students: {

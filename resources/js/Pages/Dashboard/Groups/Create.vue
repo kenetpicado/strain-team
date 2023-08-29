@@ -52,7 +52,7 @@ const props = defineProps({
         type: Object, required: true
     },
     group: {
-        type: Object, required: true
+        type: Object, required: false
     },
 })
 

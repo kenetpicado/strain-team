@@ -21,6 +21,7 @@
                         <option value="">Seleccionar sucursal</option>
                         <option v-for="branch in branches" :value="branch.id">{{ branch.name }}</option>
                     </SelectForm>
+                    <pre>{{groups}}</pre>
                 </template>
 
                 <template #actions>
@@ -44,6 +45,8 @@ import FormSection from '@/Components/FormSection.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { toast } from '@/Use/helpers.js';
 import { Link, router, useForm } from '@inertiajs/vue3';
+import { ref } from "vue"
+import axios from "axios"
 
 const props = defineProps({
     student: {
@@ -54,11 +57,13 @@ const props = defineProps({
     },
 })
 
+const groups = ref([])
+
 const form = useForm({
     id: props.student?.id ?? null,
     name: props.student?.name ?? '',
     birth: props.student?.birth ?? null,
-    id_number: props.student?.phone ?? null,
+    id_number: props.student?.id_number ?? null,
     phone: props.student?.phone ?? null,
     tutor: props.student?.tutor ?? null,
     degree: props.student?.degree ?? null,
@@ -92,5 +97,12 @@ function saveStudent() {
         });
     }
 }
+
+async function getGroups() {
+    const response = await axios.get(route('api.groups.index', { branch_id: 1}));
+    groups.value = response.data.data
+}
+
+getGroups()
 
 </script>

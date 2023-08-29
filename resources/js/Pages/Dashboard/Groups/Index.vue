@@ -18,7 +18,7 @@
                 <th>Accciones</th>
             </template>
             <template #body>
-                <tr v-for="(group, index) in groups" class="hover:bg-gray-50">
+                <tr v-for="(group, index) in groups.data" class="hover:bg-gray-50">
                     <td>
                         {{ group.id }}
                     </td>
@@ -50,6 +50,9 @@
                     <td colspan="6" class="text-center">No data to display</td>
                 </tr>
             </template>
+            <template #paginator>
+                <ThePaginator :links="groups.links"/>
+            </template>
         </TableSection>
     </AppLayout>
 </template>
@@ -61,6 +64,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link } from '@inertiajs/vue3';
 import { IconEye } from '@tabler/icons-vue';
 import { IconPencil } from '@tabler/icons-vue';
+import ThePaginator from "@/Components/ThePaginator.vue"
 
 const props = defineProps({
     groups: {

@@ -41,8 +41,12 @@ return [
             'provider' => 'users',
         ],
         'promoter' => [
-            'driver' => 'session', // o el nombre del driver correspondiente
+            'driver' => 'session',
             'provider' => 'promoters',
+        ],
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
         ],
     ],
 
@@ -71,6 +75,10 @@ return [
         'promoters' => [
             'driver' => 'eloquent',
             'model' => App\Models\Promoter::class,
+        ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
         ],
 
         // 'users' => [

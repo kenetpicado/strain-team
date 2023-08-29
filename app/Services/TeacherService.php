@@ -15,7 +15,7 @@ class TeacherService
                     ->whereColumn('branch_id', 'branches.id')
                     ->limit(1)
             ])
-            ->get();
+            ->paginate();
     }
 
     public function getToCreateGroup()

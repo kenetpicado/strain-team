@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Promoter\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PromoterProfileRequest;
+use App\Models\Promoter;
 use App\Models\Student;
 
 class ProfileController extends Controller
@@ -24,7 +25,7 @@ class ProfileController extends Controller
 
     public function update(PromoterProfileRequest $request)
     {
-        auth()->user()->update($request->validated());
+        Promoter::where('id', auth()->id())->update($request->validated());
 
         return response()->json([
             'message' => trans('crud.updated'),

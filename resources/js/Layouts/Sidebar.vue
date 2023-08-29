@@ -34,6 +34,7 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
 import { IconBooks, IconHome, IconLogout, IconSchool, IconUser, IconUserCog, IconUserStar, IconUsersGroup } from '@tabler/icons-vue';
+import { router } from '@inertiajs/vue3';
 
 const DEFAULT_ICON = IconUser;
 

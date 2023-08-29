@@ -44,7 +44,7 @@
                 <th>Accciones</th>
             </template>
             <template #body>
-                <tr v-for="(teacher, index) in teachers" class="hover:bg-gray-50">
+                <tr v-for="(teacher, index) in teachers.data" class="hover:bg-gray-50">
                     <td>
                         {{ teacher.id }}
                     </td>
@@ -71,6 +71,9 @@
                     <td colspan="6" class="text-center">No data to display</td>
                 </tr>
             </template>
+            <template #paginator>
+                <ThePaginator :links="teachers.links"/>
+            </template>
         </TableSection>
     </AppLayout>
 </template>
@@ -86,6 +89,7 @@ import TableSection from '@/Components/TableSection.vue';
 import { IconPencil } from '@tabler/icons-vue';
 import { toast, confirmAction } from "@/Use/helpers.js";
 import SelectForm from "@/Components/Form/SelectForm.vue";
+import ThePaginator from "@/Components/ThePaginator.vue"
 
 const props = defineProps({
     teachers: {

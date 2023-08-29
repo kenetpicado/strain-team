@@ -8,11 +8,11 @@ use Illuminate\Validation\ValidationException;
 
 class AuthService
 {
-    public function login($request, $model, $guard)
+    public function login($request, $model, $guard, $field = 'email')
     {
         $request->ensureIsNotRateLimited();
 
-        $user = $model::where('email', $request->email)->first();
+        $user = $model::where($field, $request->{$field})->first();
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
             $request->hit();
